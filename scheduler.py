@@ -53,20 +53,20 @@ def generate_schedule(num_classes, num_teachers, subject_map, num_classrooms, nu
 
     constraints = []
 
-    def constraint_diff_time_room(vars, vals):
-        return vals[0] != vals[1]
+    # def constraint_diff_time_room(vars, vals):
+    #     return vals[0] != vals[1]
 
-    def constraint_teacher_time(vars, vals):
-        v1, v2 = vars
-        t1, _ = vals[0]
-        t2, _ = vals[1]
-        return class_info[v1]['teacher'] != class_info[v2]['teacher'] or t1 != t2
+    # def constraint_teacher_time(vars, vals):
+    #     v1, v2 = vars
+    #     t1, _ = vals[0]
+    #     t2, _ = vals[1]
+    #     return class_info[v1]['teacher'] != class_info[v2]['teacher'] or t1 != t2
 
-    def constraint_class_time(vars, vals):
-        v1, v2 = vars
-        t1, _ = vals[0]
-        t2, _ = vals[1]
-        return class_info[v1]['class'] != class_info[v2]['class'] or t1 != t2
+    # def constraint_class_time(vars, vals):
+    #     v1, v2 = vars
+    #     t1, _ = vals[0]
+    #     t2, _ = vals[1]
+    #     return class_info[v1]['class'] != class_info[v2]['class'] or t1 != t2
 
     for i in range(len(variables)):
         for j in range(i + 1, len(variables)):

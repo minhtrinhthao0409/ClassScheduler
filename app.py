@@ -1,5 +1,10 @@
+try:
+    from flask import Flask, render_template, request
+except ImportError:
+    import os
+    os.system("pip install flask")
+    from flask import Flask, render_template, request
 
-from flask import Flask, render_template, request
 from scheduler import generate_schedule, format_schedule_table
 
 app = Flask(__name__)
@@ -13,11 +18,11 @@ def index():
         
         try:
             # Get form data
-            num_classes = int(request.form["num_classes"])
-            num_teachers = int(request.form["num_teachers"])
-            num_rooms = int(request.form["num_rooms"])
-            num_labs = int(request.form["num_labs"])
-            subjects_input = request.form["subjects"]
+            num_classes = int(request.form.get("num_classes"))
+            num_teachers = int(request.form.get("num_teachers"))
+            num_rooms = int(request.form.get("num_rooms"))
+            num_labs =  int(request.form.get("num_labs"))
+            subjects_input = request.form.get("subjects", "")
             subjects = [s.strip() for s in subjects_input.split(",") if s.strip()]
             
             # Validate inputs
@@ -61,7 +66,7 @@ def index():
 
         
     
-    return render_template("index.html", schedule_html=schedule_html, error_message=error_message)
+    return render_template("index.html", schedule_html=schedule_html, error_message=error_message, request=request)
 
 if __name__ == "__main__":
     app.run(debug=True)
