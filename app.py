@@ -86,8 +86,6 @@ def index():
 
         except ValueError as e:
             error_message = "Vui lòng nhập số hợp lệ cho các trường số lượng."
-        except ValueError as e:
-            error_message = f"Môn học lab không hợp lệ: {', '.join(invalid_labs)}. Vui lòng chỉ nhập các môn: {', '.join(subjects)}"
         except Exception as e:
             error_message = f"Lỗi xử lý: {str(e)}"
     
