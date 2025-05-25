@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from scheduler import generate_schedule, format_schedule_table
 
 app = Flask(__name__)
