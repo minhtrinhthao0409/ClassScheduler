@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Hệ thống xếp lịch học</h1>
+            <h1><strong>Hệ thống xếp lịch học</strong></h1>
             <p>Tự động tạo lịch học thông minh cho trường học</p>
         </div>
 
@@ -21,25 +21,25 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="num_classes">Số lượng lớp:</label>
-                            <input type="number" id="num_classes" name="num_classes" min="1" max="50" required>
+                            <input type="number" id="num_classes" name="num_classes" min="1" max="50" value="{{ request.form.get('num_classes') }}" required>
                             <small>Nhập số lượng lớp học (1-50)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="num_teachers">Số lượng giáo viên:</label>
-                            <input type="number" id="num_teachers" name="num_teachers" min="1" max="100" required>
+                            <input type="number" id="num_teachers" name="num_teachers" min="1" max="100" value="{{ request.form.get('num_teachers') }}" required>
                             <small>Nhập số lượng giáo viên (1-100)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="num_rooms">Số lượng phòng học:</label>
-                            <input type="number" id="num_rooms" name="num_rooms" min="1" max="50" required>
+                            <input type="number" id="num_rooms" name="num_rooms" min="1" max="50" value="{{ request.form.get('num_rooms') }}" required>
                             <small>Nhập số lượng phòng học thường (1-50)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="num_labs">Số lượng phòng lab:</label>
-                            <input type="number" id="num_labs" name="num_labs" min="0" max="20" required>
+                            <input type="number" id="num_labs" name="num_labs" min="0" max="20" value="{{ request.form.get('num_labs') }}" required>
                             <small>Nhập số lượng phòng thí nghiệm (0-20)</small>
                         </div>
                     </div>
@@ -47,13 +47,13 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="subjects">Danh sách môn học:</label>
-                            <textarea id="subjects" name="subjects" placeholder="Toán, Lý, Hóa, Văn" required></textarea>
+                            <textarea id="subjects" name="subjects" placeholder="Toán, Lý, Hóa, Văn" required>{{ request.form.get('subjects','') }}</textarea>
                             <small>Nhập các môn học, cách nhau bằng dấu phẩy</small>
                         </div>
 
                         <div class="form-group">
                             <label for="lab_subjects">Môn học cần phòng lab:</label>
-                            <textarea id="lab_subjects" name="lab_subjects" placeholder="Lý, Hóa"></textarea>
+                            <textarea id="lab_subjects" name="lab_subjects" placeholder="Lý, Hóa">{{ request.form.get('lab_subjects','') }}</textarea>
                             <small>Nhập các môn cần phòng lab, cách nhau bằng dấu phẩy (có thể để trống)</small>
                         </div>
                     </div>
@@ -78,17 +78,13 @@
             {% if schedule_html %}
             <div class="results-section">
                 <div class="results-header">
-                    <h2>Lịch học đã được tạo thành công</h2>
+                    <h2 style = "text-align: center;">Lịch học đã được tạo thành công</h2>
                 </div>
                 {{ schedule_html|safe }}
             </div>
             {% endif %}
         </div>
     </div>
-    <script>
-    window.onload = function() {
-        document.getElementById("scheduleForm").reset();
-    }
-</script>
+
 </body>
 </html>

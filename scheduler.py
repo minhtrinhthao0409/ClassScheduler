@@ -18,6 +18,10 @@ def generate_schedule(num_classes, num_teachers, subject_map, num_classrooms, nu
     subjects = list(subject_map.keys())
     if not subjects or len(subjects) > num_teachers:
         return None
+    
+    invalid_labs = [subj for subj in lab_subjects if subj not in subjects]
+    if invalid_labs:
+        raise ValueError(f"Môn học lab không hợp lệ: {', '.join(invalid_labs)}. Chỉ chấp nhận: {', '.join(subjects)}")
 
     rooms = [f'Phòng {i}' for i in range(1, num_classrooms + 1)]
     lab_rooms = [f'Lab {i}' for i in range(1, num_labs + 1)]
